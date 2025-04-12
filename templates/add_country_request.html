@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Результат{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% if success %}
+        <div class="alert alert-success">
+            <h4>Успешно!</h4>
+            <p>{{ comment }}</p>
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h4>Ошибка!</h4>
+            <p>{{ comment }}</p>
+        </div>
+    {% endif %}
+    <a href="{% url 'add_country' %}" class="btn btn-secondary">Добавить ещё</a>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Настройки викторины{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Настройки викторины</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="question_count" class="form-label">Количество вопросов (максимум {{ max_questions }})</label>
+            <input type="number" class="form-control" id="question_count" name="question_count" 
+                   min="1" max="{{ max_questions }}" value="{{ max_questions }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="time_limit" class="form-label">Время на ответ (секунд)</label>
+            <input type="number" class="form-control" id="time_limit" name="time_limit" 
+                   min="5" max="120" value="30" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Начать викторину</button>
+    </form>
+</div>
+{% endblock %}

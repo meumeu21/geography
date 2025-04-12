@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Таблица стран{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Список стран и столиц</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Страна</th>
+                <th>Столица</th>
+                <th>Кем добавлено</th>
+                <th>Дата добавления</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in countries %}
+            <tr>
+                <td>{{ item.country }}</td>
+                <td>{{ item.capital }}</td>
+                <td>{{ item.added_by }}</td>
+                <td>{{ item.date_added }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

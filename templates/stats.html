@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+    <h1>Статистика ответов</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <p>Всего стран: {{ total_countries }}</p>
+            <p>Изначальные страны: {{ db_countries }}</p>
+            <p>Добавленные <a href="add_country.html">через форму</a> страны: {{ user_countries }}</p>
+            <p>Правильных ответов: {{ stats.correct }}</p>
+            <p>Неправильных ответов: {{ stats.wrong }}</p>
+        </div>
+    </div>
+{% endblock %}

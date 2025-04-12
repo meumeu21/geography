@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Результаты викторины{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Результаты викторины</h2>
+        </div>
+        <div class="card-body">
+            <div class="progress mb-4" style="height: 30px;">
+                <div class="progress-bar {% if percentage >= 70 %}bg-success{% elif percentage >= 40 %}bg-warning{% else %}bg-danger{% endif %}" 
+                     role="progressbar" style="width: {{ percentage }}%;" 
+                     aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                    {{ percentage }}%
+                </div>
+            </div>
+            
+            <p class="lead">
+                Правильных ответов: <strong>{{ correct_answers }} из {{ total_questions }}</strong>
+            </p>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'quiz_settings' %}" class="btn btn-primary">Начать новую викторину</a>
+                <a href="{% url 'index' %}" class="btn btn-secondary">На главную</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

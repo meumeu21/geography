@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>География | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">География</a>
+            <div class="navbar-nav">
+                <a class="nav-link {% if request.resolver_match.url_name == 'add_country' %}active{% endif %}" href="{% url 'add_country' %}">Добавить новую страну</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'quiz_settings' %}active{% endif %}" href="{% url 'quiz_settings' %}">Викторина</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'countries_table' %}active{% endif %}" href="{% url 'countries_table' %}">Таблица стран</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'stats' %}active{% endif %}" href="{% url 'stats' %}">Статистика</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

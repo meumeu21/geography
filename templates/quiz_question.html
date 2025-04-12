@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Вопрос {{ current_question }} из {{ total_questions }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Вопрос {{ current_question }} из {{ total_questions }}
+            <div class="float-end">
+                Осталось времени: <span id="timer">{{ time_limit }}</span> сек
+            </div>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                {% if ask_country %}
+                    Столица: {{ capital }}<br>
+                    Введите страну:
+                {% else %}
+                    Страна: {{ country }}<br>
+                    Введите столицу:
+                {% endif %}
+            </h4>
+            <form method="post" action="{% url 'check_answer' %}" id="quiz-form">
+                {% csrf_token %}
+                <input type="text" class="form-control mb-3" name="answer" required autofocus>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Проверить</button>
+                    <a href="{% url 'skip_question' %}" class="btn btn-warning">Пропустить</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let timeLeft = {{ time_limit }};
+    const timerElement = document.getElementById('timer');
+    const quizForm = document.getElementById('quiz-form');
+    
+    const timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            quizForm.submit();
+        }
+    }, 1000);
+</script>
+{% endblock %}

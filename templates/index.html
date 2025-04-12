@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Добро пожаловать!</h1>
+    <p>Проверь свои знания географии:</p>
+    <a href="{% url 'quiz_settings' %}" class="btn btn-primary">Начать викторину</a>
+{% endblock %}

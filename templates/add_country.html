@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Добавить страну{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Добавить новую страну</h1>
+    <form method="post" class="mt-3" action="{% url 'send_country' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Страна</label>
+            <input type="text" class="form-control" id="country" name="country" required>
+        </div>
+        <div class="mb-3">
+            <label for="capital" class="form-label">Столица</label>
+            <input type="text" class="form-control" id="capital" name="capital" required>
+        </div>
+        <div class="mb-3">
+            <label for="added_by" class="form-label">Кем добавлено (оставьте пустым для прочерка)</label>
+            <input type="text" class="form-control" id="added_by" name="added_by">
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</div>
+{% endblock %}

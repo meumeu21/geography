@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Результат вопроса{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Результат ответа
+        </div>
+        <div class="card-body">
+            {% if skipped %}
+                <div class="alert alert-info">
+                    <h4>Вопрос пропущен</h4>
+                    <p>Правильный ответ: <strong>{{ correct_answer }}</strong></p>
+                </div>
+            {% else %}
+                {% if is_correct and time_ok %}
+                    <div class="alert alert-success">
+                        <h4>Правильно!</h4>
+                        <p>Вы ответили за {{ time_spent }} секунд</p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        <h4>Неправильно</h4>
+                        <p>Ваш ответ: <strong>{{ user_answer }}</strong></p>
+                        <p>Правильный ответ: <strong>{{ correct_answer }}</strong></p>
+                        {% if not time_ok %}
+                            <p>Вы превысили лимит времени!</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            
+            <div class="text-center">
+                {% if current_question <= total_questions %}
+                    <a href="{% url 'quiz_question' %}" class="btn btn-primary">Следующий вопрос</a>
+                {% else %}
+                    <a href="{% url 'quiz_results' %}" class="btn btn-primary">Посмотреть результаты</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
